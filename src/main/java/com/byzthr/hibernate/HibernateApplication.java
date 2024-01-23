@@ -1,13 +1,13 @@
-package com.byzthr.hibernatehelloworld;
+package com.byzthr.hibernate;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class HibernateHelloWorldApplication {
+public class HibernateApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(HibernateHelloWorldApplication.class, args);
+		SpringApplication.run(HibernateApplication.class, args);
 	}
 
 }
