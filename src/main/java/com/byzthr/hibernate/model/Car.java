@@ -1,23 +1,35 @@
 package com.byzthr.hibernate.model;
 
+import org.hibernate.annotations.NaturalId;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor 
+@AllArgsConstructor
 @Entity
-@Table(name = "general")
+@Table(name = "cars")
 public class Car {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NaturalId
+    @Column(name="CID")
+    private String cid;
 
     @Column(name="brand")
     private String brand;
@@ -35,7 +47,7 @@ public class Car {
     private Integer toYear;
     
     @Column(name="engine_type")
-    private String engineType;
+    private EngineType engineType;
     
     @Column(name="motorization")
     private Double motorization;

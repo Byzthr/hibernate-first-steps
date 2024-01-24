@@ -9,7 +9,7 @@ import com.byzthr.hibernate.model.Car;
 
 public interface CarService {
 
-    public Car saveCar(@NonNull Car car);
+    public Car saveCar(Car car);
 
     public Car findCarById(@NonNull Long id);
 

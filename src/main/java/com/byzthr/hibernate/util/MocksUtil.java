@@ -3,6 +3,7 @@ package com.byzthr.hibernate.util;
 import org.springframework.lang.NonNull;
 
 import com.byzthr.hibernate.model.Car;
+import com.byzthr.hibernate.model.EngineType;
 
 import lombok.experimental.UtilityClass;
 
@@ -17,7 +18,7 @@ public class MocksUtil {
         car.setVersion("I, phase 1");
         car.setFromYear(1999);
         car.setToYear(2002);
-        car.setEngineType("gasoline");
+        car.setEngineType(EngineType.GASOLINE);
         car.setMotorization(1.6);
         car.setDetails("My first owned car");
 

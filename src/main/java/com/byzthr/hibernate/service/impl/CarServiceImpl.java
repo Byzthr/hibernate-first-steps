@@ -22,9 +22,10 @@ public class CarServiceImpl implements CarService {
     private CarRepository repository;
     
     @Override
-    public Car saveCar(@NonNull Car car) {
+    public Car saveCar(Car car) {
         log.debug("saveCar <- {}", car);
 
+        if (car==null) throw new RuntimeException("Entity cannot be null");
         repository.save(car);
 
         log.debug("saveCar -> {}", car);
