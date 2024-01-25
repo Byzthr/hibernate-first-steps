@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.byzthr.hibernate.model.Car;
 import com.byzthr.hibernate.model.EngineType;
 import com.byzthr.hibernate.service.CarService;
-import com.byzthr.hibernate.util.MocksUtil;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -25,16 +24,6 @@ public class HibernateController {
 
     @Autowired
     private CarService carService;
-
-    @GetMapping("/saveMegane")
-    public Car saveMegane() {
-        log.debug("saveMegane <- {}");
-
-        carService.saveCar(MocksUtil.megane());
-
-        log.debug("saveMegane -> {}");
-        return MocksUtil.megane();
-    }
 
     @PostMapping("/save")
     public Car saveCar(@NonNull @RequestBody Car car) {
@@ -51,12 +40,13 @@ public class HibernateController {
         @RequestParam(name = "chasisID") String cid,
         @RequestParam(name = "brand") String brand,
         @RequestParam(name = "model") String model,
-        @RequestParam(name = "version") String version,
-        @RequestParam(name = "from year") int fromYear,
-        @RequestParam(name = "to year") int toYear,
-        @RequestParam(name = "motorization") double motorization,
-        @RequestParam(name = "engine type") EngineType engineType,
-        @RequestBody String details
+        @RequestParam(name = "version", required = false) String version,
+        @RequestParam(name = "from year", required = false) Integer fromYear,
+        @RequestParam(name = "to year", required = false) Integer toYear,
+        @RequestParam(name = "engine", required = false) String engine,
+        @RequestParam(name = "motorization", required = false) Double motorization,
+        @RequestParam(name = "engine type", required = false) EngineType engineType,
+        @RequestBody(required = false) String details
         ) {
         log.debug("saveCarEasy <- {}");
 
@@ -67,6 +57,7 @@ public class HibernateController {
                         .version(version)
                         .fromYear(fromYear)
                         .toYear(toYear)
+                        .engine(engine)
                         .motorization(motorization)
                         .engineType(engineType)
                         .details(details)

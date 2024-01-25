@@ -2,6 +2,7 @@ package com.byzthr.hibernate.model;
 
 public enum EngineType {
 
+    //NULL(null),
     GASOLINE("gasoline"),
     DIESEL("diesel");
 
