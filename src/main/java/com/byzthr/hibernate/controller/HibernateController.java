@@ -6,12 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.byzthr.hibernate.model.Car;
+import com.byzthr.hibernate.model.CarAttribute;
 import com.byzthr.hibernate.model.EngineType;
 import com.byzthr.hibernate.service.CarService;
 
@@ -27,12 +29,8 @@ public class HibernateController {
 
     @PostMapping("/save")
     public Car saveCar(@NonNull @RequestBody Car car) {
-        log.debug("saveCar <- {}", car);
-
-        carService.saveCar(car);
-
-        log.debug("saveCar -> {}", car);
-        return car;
+        log.debug("saveCar endpoint triggered");
+        return carService.saveCar(car);
     }
 
     @PostMapping("/saveEasy")
@@ -48,32 +46,34 @@ public class HibernateController {
         @RequestParam(name = "engine type", required = false) EngineType engineType,
         @RequestBody(required = false) String details
         ) {
-        log.debug("saveCarEasy <- {}");
-
-        Car car = carService.saveCar(Car.builder()
-                        .cid(cid)
-                        .brand(brand)
-                        .model(model)
-                        .version(version)
-                        .fromYear(fromYear)
-                        .toYear(toYear)
-                        .engine(engine)
-                        .motorization(motorization)
-                        .engineType(engineType)
-                        .details(details)
-                        .build());
-
-        log.debug("saveCarEasy -> {}", car);
-        return car;
+        log.debug("saveCarEasy endpoint triggered");
+        return carService.saveCar(Car.builder()
+        .cid(cid)
+        .brand(brand)
+        .model(model)
+        .version(version)
+        .fromYear(fromYear)
+        .toYear(toYear)
+        .engine(engine)
+        .motorization(motorization)
+        .engineType(engineType)
+        .details(details)
+        .build());
     }
 
     @GetMapping("/findAll")
     public List<Car> getAllCars() {
-        log.debug("saveCar <- {}");
+        log.debug("saveCar endpoint triggered");
+        return carService.findAll();
+    }
 
-        List<Car> cars = carService.findAll();
-
-        log.debug("saveCar -> {}", cars);
-        return cars;
+    @PutMapping("/updateField")
+    public <T> String updateCar(
+        @RequestParam("id") Long id,
+        @RequestParam("field") CarAttribute field,
+        @RequestParam("value") String value
+        ) {
+            log.debug("updateField endpoint triggered");
+            return carService.updateCar(id, field, value);
     }
 }

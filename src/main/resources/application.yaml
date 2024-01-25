@@ -20,4 +20,7 @@ spring:
       ddl-auto: update
       generate-ddl: true
 
-springdoc.swagger-ui.path: /swagger.html
+logging:
+  level:
+    root: INFO
+    com.byzthr: DEBUG
