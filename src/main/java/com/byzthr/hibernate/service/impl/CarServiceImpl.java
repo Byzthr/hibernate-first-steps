@@ -98,4 +98,13 @@ public class CarServiceImpl implements CarService {
         return "OK";
     }
 
+    public String deleteCar(@NonNull Long id) {
+        log.debug("deleteCar <- {}", id);
+
+        repository.deleteById(id);
+
+        log.debug("deleteCar -> {}", "OK");
+        return "OK";
+    }
+
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -68,12 +69,18 @@ public class HibernateController {
     }
 
     @PutMapping("/updateField")
-    public <T> String updateCar(
+    public <T> String updateCarField(
         @RequestParam("id") Long id,
         @RequestParam("field") CarAttribute field,
         @RequestParam("value") String value
         ) {
-            log.debug("updateField endpoint triggered");
+            log.debug("updateCarField endpoint triggered");
             return carService.updateCar(id, field, value);
+    }
+
+    @DeleteMapping("/delete")
+    public String deleteCar(@NonNull @RequestParam("id") Long id) {
+        log.debug("deleteCar endpoint triggered");
+        return carService.deleteCar(id);
     }
 }

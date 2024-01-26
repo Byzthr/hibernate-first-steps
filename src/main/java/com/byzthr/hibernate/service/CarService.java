@@ -17,4 +17,6 @@ public interface CarService {
     public List<Car> findAll();
 
     public String updateCar(Long id, CarAttribute field, String value);
+
+    public String deleteCar(@NonNull Long id);
 }
